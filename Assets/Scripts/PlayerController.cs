@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-
     public static bool joueurInput = false;
 
     public float tempsAerienne = 0;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool murOuvert = false;
     private static bool vueAerien = false;
     private static bool objetsVisble = false;
+
     public GameObject objetsPlacer;
 
     public Camera cameraJoueur;
@@ -41,7 +41,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        bool ctrlShiftSpace =
+            (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) &&
+            (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
+            Input.GetKeyDown(KeyCode.Space);
 
+        if (ctrlShiftSpace)
+        {
+            vueAerien = !vueAerien;
+
+            cameraJoueur.enabled = !vueAerien;
+            cameraAerien.enabled = vueAerien;
+
+            objetsVisble = vueAerien;
+        }
 
         if (vueAerien)
         {
@@ -77,12 +90,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2) == true) GameManager.RestartLevel();
         // DEBUG
 
-        if (Input.GetKeyDown(KeyCode.Space) == true && !murOuvert && GameManager.nombreOuvreur > 0 && GameManager.score >= 50)
+        if (Input.GetKeyDown(KeyCode.Space) == true && !ctrlShiftSpace && !murOuvert && GameManager.nombreOuvreur > 0 && GameManager.score >= 50)
         {
             murOuvert = true;
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
-
 
             if (Physics.Raycast(ray, out hit, 1f))
             {
@@ -112,14 +124,6 @@ public class PlayerController : MonoBehaviour
             cameraAerien.enabled = false;
             vueAerien = false;
             objetsVisble = true;
-        }
-
-
-        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) &&
-             (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-             && Input.GetKeyDown(KeyCode.Space))
-        {
-            objetsVisble = !objetsVisble;
         }
 
         foreach (Transform gameObjectVisibleTransform in objetsPlacer.transform)
