@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 9f43a2853e4435b429907cef54b6b384
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - joueur: {instanceID: 0}
+  - ouvertureMurAudio: {fileID: 8300000, guid: 89cf20d020a1026969437e640c585e2b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
