@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Prog3D-Unity-main.slnx"
+    "dotnet.defaultSolution": "Projet3D-Unity.slnx"
 }
