@@ -3,3 +3,5 @@
 - Samuel Filteau-Hubert
 - Kamal Wakim
 - Abel Aimé Moussy Minyogok
+
+Lien du projet GitHub : https://github.com/K-Wakim/Projet3D-Unity.git
